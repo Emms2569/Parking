@@ -11,7 +11,14 @@ class PagoController {
             resp.status(500).json({ message: 'Error al obtener los registros de pago' });
         }
     }
-
+    public async getOne(req: Request, resp: Response){
+        const { id } = req.params;
+        const Pago = await pool.query('SELECT * FROM pago WHERE IdPago=?', [id]);
+        if (Pago.length >0){
+            return resp.json(Pago[0]);
+        }
+        resp.status(404).json({text: 'El pago no existe'});
+    }
     public async create(req: Request, resp: Response): Promise<void> {
         await pool.query('INSERT INTO pago set ?', [req.body]);
         resp.json({ message: 'Pago guardado' });

@@ -12,6 +12,7 @@ class UbicacionRoutes {
     }
     config() {
         this.router.get('/', ubicacionControllers_1.default.list);
+        this.router.get('/:id', ubicacionControllers_1.default.getOne);
         this.router.post('/', ubicacionControllers_1.default.create);
         this.router.delete('/:id', ubicacionControllers_1.default.delete);
         this.router.put('/:id', ubicacionControllers_1.default.update);

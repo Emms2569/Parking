@@ -28,6 +28,16 @@ class AccesoController {
             }
         });
     }
+    getOne(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const Acceso = yield database_1.default.query('SELECT * FROM acceso WHERE IdAcceso=?', [id]);
+            if (Acceso.length > 0) {
+                return resp.json(Acceso[0]);
+            }
+            resp.status(404).json({ text: 'El acceso no existe' });
+        });
+    }
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO acceso set ?', [req.body]);

@@ -12,6 +12,7 @@ class ReservaRoutes {
     }
     config() {
         this.router.get('/', reservaControllers_1.default.list);
+        this.router.get('/:id', reservaControllers_1.default.getOne);
         this.router.post('/', reservaControllers_1.default.create);
         this.router.delete('/:id', reservaControllers_1.default.delete);
         this.router.put('/:id', reservaControllers_1.default.update);

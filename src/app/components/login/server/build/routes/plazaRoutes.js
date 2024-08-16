@@ -12,6 +12,7 @@ class PlazaRoutes {
     }
     config() {
         this.router.get('/', plazaControllers_1.default.list);
+        this.router.get('/:id', plazaControllers_1.default.getOne);
         this.router.post('/', plazaControllers_1.default.create);
         this.router.delete('/:id', plazaControllers_1.default.delete);
         this.router.put('/:id', plazaControllers_1.default.update);

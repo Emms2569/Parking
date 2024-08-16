@@ -10,6 +10,7 @@ class PagoRoutes {
 
     config(): void {
         this.router.get('/', pagoController.list);
+        this.router.get('/:id', pagoController.getOne);
         this.router.post('/', pagoController.create);
         this.router.delete('/:id', pagoController.delete);
         this.router.put('/:id', pagoController.update);

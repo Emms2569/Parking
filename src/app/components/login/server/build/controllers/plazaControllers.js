@@ -27,6 +27,16 @@ class PlazaController {
             }
         });
     }
+    getOne(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const Plaza = yield database_1.default.query('SELECT * FROM plaza WHERE IdPlaza=?', [id]);
+            if (Plaza.length > 0) {
+                return resp.json(Plaza[0]);
+            }
+            resp.status(404).json({ text: 'La Plaza no existe' });
+        });
+    }
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO plaza set ?', [req.body]);

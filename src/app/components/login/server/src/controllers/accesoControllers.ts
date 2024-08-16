@@ -13,6 +13,15 @@ class AccesoController {
         }
     }
 
+    public async getOne(req: Request, resp: Response){
+        const { id } = req.params;
+        const Acceso = await pool.query('SELECT * FROM acceso WHERE IdAcceso=?', [id]);
+        if (Acceso.length >0){
+            return resp.json(Acceso[0]);
+        }
+        resp.status(404).json({text: 'El acceso no existe'});
+    }
+
     public async create(req: Request, resp: Response): Promise<void> {
         await pool.query('INSERT INTO acceso set ?', [req.body]);
         resp.json({ message: 'Acceso guardado' });

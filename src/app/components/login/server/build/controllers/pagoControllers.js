@@ -27,6 +27,16 @@ class PagoController {
             }
         });
     }
+    getOne(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const Pago = yield database_1.default.query('SELECT * FROM pago WHERE IdPago=?', [id]);
+            if (Pago.length > 0) {
+                return resp.json(Pago[0]);
+            }
+            resp.status(404).json({ text: 'El pago no existe' });
+        });
+    }
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO pago set ?', [req.body]);

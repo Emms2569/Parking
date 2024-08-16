@@ -10,6 +10,7 @@ class ServicioReservaRoutes {
 
     config(): void {
         this.router.get('/', servicioReservaController.list);
+        this.router.get('/:id', servicioReservaController.getOne);
         this.router.post('/', servicioReservaController.create);
         this.router.delete('/:id', servicioReservaController.delete);
         this.router.put('/:id', servicioReservaController.update);

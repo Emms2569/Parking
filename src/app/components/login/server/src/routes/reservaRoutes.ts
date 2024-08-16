@@ -10,6 +10,7 @@ class ReservaRoutes {
 
     config(): void {
         this.router.get('/', reservaController.list);
+        this.router.get('/:id', reservaController.getOne);
         this.router.post('/', reservaController.create);
         this.router.delete('/:id', reservaController.delete);
         this.router.put('/:id', reservaController.update);

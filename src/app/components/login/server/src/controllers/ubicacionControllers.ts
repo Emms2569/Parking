@@ -11,7 +11,14 @@ class UbicacionController {
             resp.status(500).json({ message: 'Error al obtener los registros de ubicación' });
         }
     }
-
+    public async getOne(req: Request, resp: Response){
+        const { id } = req.params;
+        const Ubicacion = await pool.query('SELECT * FROM Ubicacion WHERE IdUbi=?', [id]);
+        if (Ubicacion.length >0){
+            return resp.json(Ubicacion[0]);
+        }
+        resp.status(404).json({text: 'La Ubicacion no existe'});
+    }
     public async create(req: Request, resp: Response): Promise<void> {
         await pool.query('INSERT INTO ubicacion set ?', [req.body]);
         resp.json({ message: 'Ubicación guardada' });

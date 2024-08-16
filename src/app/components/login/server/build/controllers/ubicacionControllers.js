@@ -27,6 +27,16 @@ class UbicacionController {
             }
         });
     }
+    getOne(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const Ubicacion = yield database_1.default.query('SELECT * FROM Ubicacion WHERE IdUbi=?', [id]);
+            if (Ubicacion.length > 0) {
+                return resp.json(Ubicacion[0]);
+            }
+            resp.status(404).json({ text: 'La Ubicacion no existe' });
+        });
+    }
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO ubicacion set ?', [req.body]);

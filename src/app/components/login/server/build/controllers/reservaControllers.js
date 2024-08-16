@@ -27,6 +27,16 @@ class ReservaController {
             }
         });
     }
+    getOne(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const Reserva = yield database_1.default.query('SELECT * FROM reserva WHERE IdReserva=?', [id]);
+            if (Reserva.length > 0) {
+                return resp.json(Reserva[0]);
+            }
+            resp.status(404).json({ text: 'La Reserva no existe' });
+        });
+    }
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO reserva set ?', [req.body]);

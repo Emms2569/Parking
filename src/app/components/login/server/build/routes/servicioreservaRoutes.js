@@ -12,6 +12,7 @@ class ServicioReservaRoutes {
     }
     config() {
         this.router.get('/', servicioreservaControllers_1.default.list);
+        this.router.get('/:id', servicioreservaControllers_1.default.getOne);
         this.router.post('/', servicioreservaControllers_1.default.create);
         this.router.delete('/:id', servicioreservaControllers_1.default.delete);
         this.router.put('/:id', servicioreservaControllers_1.default.update);

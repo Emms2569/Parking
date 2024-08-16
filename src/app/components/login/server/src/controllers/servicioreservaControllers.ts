@@ -11,7 +11,14 @@ class ServicioReservaController {
             resp.status(500).json({ message: 'Error al obtener los registros de servicioreserva' });
         }
     }
-
+    public async getOne(req: Request, resp: Response){
+        const { id } = req.params;
+        const ServiRes = await pool.query('SELECT * FROM servicioreserva WHERE IdServicio=?', [id]);
+        if (ServiRes.length >0){
+            return resp.json(ServiRes[0]);
+        }
+        resp.status(404).json({text: 'No existe servicio en esta reserva no existe'});
+    }
     public async create(req: Request, resp: Response): Promise<void> {
         await pool.query('INSERT INTO servicioreserva set ?', [req.body]);
         resp.json({ message: 'Servicio de reserva guardado' });
