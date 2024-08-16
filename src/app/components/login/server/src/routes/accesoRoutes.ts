@@ -10,7 +10,7 @@ class AccesoRoutes {
 
     config(): void {
         this.router.get('/', accesoController.list);
-        this.router.get('/:Id',accesoController.getOne);
+        this.router.get('/:id', accesoController.getOne);
         this.router.post('/', accesoController.create);
         this.router.delete('/:id', accesoController.delete);
         this.router.put('/:id', accesoController.update);
