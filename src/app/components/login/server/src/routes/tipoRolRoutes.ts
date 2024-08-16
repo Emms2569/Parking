@@ -5,6 +5,8 @@ class TipoRolRoutes{
     constructor(){
         this.config();
     }
+
+    
     config() : void{
         this.router.get('/',tipoRolController.list);
         this.router.get('/:IdRol',tipoRolController.getOne);
