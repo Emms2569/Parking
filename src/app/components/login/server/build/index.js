@@ -13,6 +13,11 @@ const pagoRoutes_1 = __importDefault(require("./routes/pagoRoutes"));
 const plazaRoutes_1 = __importDefault(require("./routes/plazaRoutes"));
 const servicioreservaRoutes_1 = __importDefault(require("./routes/servicioreservaRoutes"));
 const ubicacionRoutes_1 = __importDefault(require("./routes/ubicacionRoutes"));
+const serviciosRoutes_1 = __importDefault(require("./routes/serviciosRoutes"));
+const tipoRolRoutes_1 = __importDefault(require("./routes/tipoRolRoutes"));
+const registroESRoutes_1 = __importDefault(require("./routes/registroESRoutes"));
+const clientesRoutes_1 = __importDefault(require("./routes/clientesRoutes"));
+const vehiculosRoutes_1 = __importDefault(require("./routes/vehiculosRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -23,6 +28,11 @@ class Server {
         this.routes3();
         this.routes4();
         this.routes5();
+        this.routes6();
+        this.routes7();
+        this.routes8();
+        this.routes9();
+        this.routes10();
     }
     config() {
         this.app.set('port', process.env['PORT'] || 3000);
@@ -54,6 +64,26 @@ class Server {
     routes5() {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/api/ubicacion', ubicacionRoutes_1.default);
+    }
+    routes6() {
+        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/Vehiculo', vehiculosRoutes_1.default);
+    }
+    routes7() {
+        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/Cliente', clientesRoutes_1.default);
+    }
+    routes8() {
+        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/RegistroES', registroESRoutes_1.default);
+    }
+    routes9() {
+        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/TipoRol', tipoRolRoutes_1.default);
+    }
+    routes10() {
+        this.app.use('/', indexRoutes_1.default);
+        this.app.use('/api/Servicio', serviciosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

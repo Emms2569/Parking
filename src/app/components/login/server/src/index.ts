@@ -8,6 +8,11 @@ import pagoRoutes from './routes/pagoRoutes';
 import plazaRoutes from './routes/plazaRoutes';
 import servivioreservaRoutes from './routes/servicioreservaRoutes';
 import ubicacionRoutes from './routes/ubicacionRoutes';
+import serviciosRoutes from './routes/serviciosRoutes';
+import tipoRolRoutes from './routes/tipoRolRoutes';
+import registroESRoutes from './routes/registroESRoutes';
+import clientesRoutes from './routes/clientesRoutes';
+import vehiculosRoutes from './routes/vehiculosRoutes';
 
 class Server {
     public app: Application;
@@ -21,6 +26,11 @@ class Server {
         this.routes3();
         this.routes4();
         this.routes5();
+        this.routes6();
+        this.routes7();
+        this.routes8();
+        this.routes9();
+        this.routes10();
     }
 
     config(): void {
@@ -65,6 +75,35 @@ class Server {
     routes5(): void {
         this.app.use('/', indexRoutes);
         this.app.use('/api/ubicacion', ubicacionRoutes);
+
+    }
+    routes6(): void {
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/Vehiculo', vehiculosRoutes);
+
+    }
+
+    routes7(): void {
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/Cliente', clientesRoutes);
+
+    }
+
+    routes8(): void {
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/RegistroES', registroESRoutes);
+
+    }
+
+    routes9(): void {
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/TipoRol', tipoRolRoutes);
+
+    }
+
+    routes10(): void {
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/Servicio', serviciosRoutes);
 
     }
 

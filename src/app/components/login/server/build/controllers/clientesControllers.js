@@ -12,35 +12,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registroController = void 0;
 const database_1 = __importDefault(require("../database"));
-class RegistroController {
+class ClientesController {
     list(req, resp) {
-        //resp.send('Games');
-        database_1.default.query('DESCRIBE registro');
-        resp.json({ text: 'Lista de registros' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const Cliente = yield database_1.default.query('Select * FROM Cliente');
+            resp.json({ Cliente });
+        });
+    }
+    getOne(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { IdCliente } = req.params;
+            const Cliente = yield database_1.default.query('SELECT * FROM Cliente WHERE IdCliente=?', [IdCliente]);
+            if (Cliente.length > 0) {
+                return resp.json(Cliente[0]);
+            }
+            resp.status(404).json({ text: 'El cliente no existe' });
+        });
     }
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            yield database_1.default.query('INSERT INTO registro set ?', [req.body]);
-            resp.json({ message: 'Registro guardado' });
+            yield database_1.default.query('INSERT INTO Cliente set ?', [req.body]);
+            resp.json({ message: 'El cliente fue registrado :)' });
         });
     }
     delete(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('DELETE FROM registro WHERE id = ?', [id]);
-            resp.json({ message: 'el registro fue borrado' });
+            const { IdCliente } = req.params;
+            yield database_1.default.query('DELETE FROM Cliente WHERE IdCliente=?', [IdCliente]);
+            resp.json({ message: 'El cliente fue eliminado' });
         });
     }
     update(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            yield database_1.default.query('UPDATE registro set ? WHERE id=?', [req.body, id]);
-            resp.json({ message: 'el registro fue actualizado' });
+            const { IdCliente } = req.params;
+            yield database_1.default.query('UPDATE Cliente set ? WHERE IdCliente = ?', [req.body, IdCliente]);
+            resp.json({ message: 'El cliente fue actualizado' });
         });
     }
 }
-exports.registroController = new RegistroController();
-exports.default = exports.registroController;
+const clientesController = new ClientesController();
+exports.default = clientesController;
